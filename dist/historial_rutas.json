@@ -12,5 +12,26 @@
         "destino": "Ibagué",
         "distancia": "631.8 km",
         "ruta": "Bucaramanga -> Tunja -> Bogotá -> Ibagué"
+    },
+    {
+        "fecha": "2026-04-04 23:07",
+        "origen": "Bogotá",
+        "destino": "Santa Marta",
+        "distancia": "965.9 km",
+        "ruta": "Bogotá -> Tunja -> Bucaramanga -> Santa Marta"
+    },
+    {
+        "fecha": "2026-04-04 23:07",
+        "origen": "Cúcuta",
+        "destino": "Riohacha",
+        "distancia": "738.18 km",
+        "ruta": "Cúcuta -> Valledupar -> Riohacha"
+    },
+    {
+        "fecha": "2026-04-04 23:07",
+        "origen": "Quibdó",
+        "destino": "Sincelejo",
+        "distancia": "697.77 km",
+        "ruta": "Quibdó -> Medellín -> Sincelejo"
     }
 ]
