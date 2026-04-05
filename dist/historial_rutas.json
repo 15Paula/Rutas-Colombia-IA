@@ -1,0 +1,16 @@
+[
+    {
+        "fecha": "2026-04-04 23:02",
+        "origen": "Bogotá",
+        "destino": "Ibagué",
+        "distancia": "196.75 km",
+        "ruta": "Bogotá -> Ibagué"
+    },
+    {
+        "fecha": "2026-04-04 23:02",
+        "origen": "Bucaramanga",
+        "destino": "Ibagué",
+        "distancia": "631.8 km",
+        "ruta": "Bucaramanga -> Tunja -> Bogotá -> Ibagué"
+    }
+]
