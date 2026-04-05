@@ -5,7 +5,7 @@ a = Analysis(
     ['src\\interfaz_mapa.py'],
     pathex=[],
     binaries=[],
-    datas=[('src/mapa_colombia.png', 'src')],
+    datas=[('src/mapa_colombia.png', 'src'), ('src/mapa_colombia.png', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
