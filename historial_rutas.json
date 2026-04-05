@@ -1,0 +1,16 @@
+[
+    {
+        "fecha": "2026-04-04 22:58",
+        "origen": "Cali",
+        "destino": "Neiva",
+        "distancia": "426.02 km",
+        "ruta": "Cali -> Popayán -> Neiva"
+    },
+    {
+        "fecha": "2026-04-04 22:58",
+        "origen": "Bogotá",
+        "destino": "Medellín",
+        "distancia": "528.53 km",
+        "ruta": "Bogotá -> Ibagué -> Pereira -> Medellín"
+    }
+]

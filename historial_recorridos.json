@@ -1,0 +1,16 @@
+[
+    {
+        "fecha": "2026-04-04 22:56",
+        "origen": "Pereira",
+        "destino": "Ibagué",
+        "distancia_km": 120.84,
+        "itinerario": "Pereira -> Ibagué"
+    },
+    {
+        "fecha": "2026-04-04 22:56",
+        "origen": "Medellín",
+        "destino": "Bucaramanga",
+        "distancia_km": 392.0,
+        "itinerario": "Medellín -> Bucaramanga"
+    }
+]

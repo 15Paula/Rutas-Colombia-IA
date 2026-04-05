@@ -1,7 +1,9 @@
 import os
 import sys
+import json # Agregado para el historial
 import tkinter as tk
 from tkinter import ttk
+from datetime import datetime # Agregado para la fecha
 from PIL import Image, ImageTk
 
 # Importamos los datos de tu otro archivo
@@ -14,6 +16,44 @@ def recurso_ruta(relative_path):
     except Exception:
         base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
+
+# ---------------- LÓGICA DE PERSISTENCIA (AGREGADO) ----------------
+
+def guardar_en_historial(origen, destino, distancia, ruta):
+    archivo = "historial_rutas.json"
+    nuevo_registro = {
+        "fecha": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "origen": origen,
+        "destino": destino,
+        "distancia": f"{round(distancia, 2)} km",
+        "ruta": " -> ".join(ruta)
+    }
+    
+    datos = []
+    if os.path.exists(archivo):
+        try:
+            with open(archivo, "r", encoding="utf-8") as f:
+                datos = json.load(f)
+        except: datos = []
+    
+    datos.append(nuevo_registro)
+    with open(archivo, "w", encoding="utf-8") as f:
+        json.dump(datos, f, indent=4, ensure_ascii=False)
+
+def abrir_historial():
+    ventana_h = tk.Toplevel(ventana)
+    ventana_h.title("Historial de Rutas Optimizadas")
+    ventana_h.geometry("700x400")
+    
+    columnas = ("fecha", "origen", "destino", "distancia")
+    tabla = ttk.Treeview(ventana_h, columns=columnas, show="headings")
+    for col in columnas: tabla.heading(col, text=col.capitalize())
+    tabla.pack(expand=True, fill="both", padx=10, pady=10)
+    
+    if os.path.exists("historial_rutas.json"):
+        with open("historial_rutas.json", "r", encoding="utf-8") as f:
+            for r in reversed(json.load(f)):
+                tabla.insert("", "end", values=(r["fecha"], r["origen"], r["destino"], r["distancia"]))
 
 # ---------------- CONFIGURACIÓN DE ESTILO ----------------
 COLOR_FONDO = "#F8FAFC"      
@@ -91,6 +131,8 @@ def animar_segmento(ruta, indice, distancia_total):
         marcar_ciudad(ruta[-1], "destino")
         resultado_label.config(text=f"✅ {round(distancia_total, 2)} km", fg=COLOR_PRIMARIO)
         info_ruta.config(text=f"Ruta óptima trazada:\n{' ➔ '.join(ruta)}")
+        # GUARDAR EN HISTORIAL (AGREGADO)
+        guardar_en_historial(ruta[0], ruta[-1], distancia_total, ruta)
 
 def iniciar_busqueda():
     limpiar_mapa()
@@ -158,6 +200,11 @@ combo_destino.bind("<<ComboboxSelected>>", actualizar_vista_previa)
 btn_buscar = tk.Button(control_panel, text="TRAZAR RECORRIDO", bg=COLOR_PRIMARIO, fg="white", font=FUENTE_BOLD, 
                       relief="flat", pady=15, cursor="hand2", command=iniciar_busqueda)
 btn_buscar.pack(fill="x")
+
+# BOTÓN HISTORIAL (AGREGADO)
+btn_historial = tk.Button(control_panel, text="REVISAR HISTORIAL", bg=COLOR_SECUNDARIO, fg="white", font=FUENTE_BOLD, 
+                         relief="flat", pady=10, cursor="hand2", command=abrir_historial)
+btn_historial.pack(fill="x", pady=10)
 
 # --- ÁREA DE INFORMACIÓN (CORREGIDA) ---
 # Usamos un frame con padding para simular la tarjeta de resultados
